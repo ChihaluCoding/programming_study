@@ -1,4 +1,4 @@
-const VIDEO_PATH_PREFIX = "../";
+const VIDEO_PATH_PREFIX = "";
 
 const elements = {
   categoryList: document.getElementById("categoryList"),
