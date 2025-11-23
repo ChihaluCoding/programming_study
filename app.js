@@ -1,4 +1,4 @@
-// Detect when we need to stream videos from raw.githubusercontent.com (GitHub Pages).
+// Detect when we need to stream videos from a CDN when running on GitHub Pages.
 const VIDEO_PATH_PREFIX = computeVideoPathPrefix();
 
 function computeVideoPathPrefix() {
@@ -19,7 +19,7 @@ function computeVideoPathPrefix() {
   const account = hostMatch[1];
   const pathSegments = window.location.pathname.split("/").filter(Boolean);
   const repository = pathSegments[0] || `${account}.github.io`;
-  const base = `https://raw.githubusercontent.com/${account}/${repository}/main/`;
+  const base = `https://cdn.jsdelivr.net/gh/${account}/${repository}@main/`;
   return ensureTrailingSlash(base);
 }
 
