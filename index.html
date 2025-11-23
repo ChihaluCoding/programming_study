@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>プログラミング学習キャンプ</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="hero-copy">
+        <p class="eyebrow">Video Learning Hub</p>
+        <h1>プログラミング学習キャンプ</h1>
+      </div>
+      <div class="progress-panel">
+        <div class="progress-head">
+          <div>
+            <p class="progress-label">全体の進捗</p>
+            <p id="progressCount" class="progress-count">0 / 0 本</p>
+          </div>
+          <p id="progressText" class="progress-percent">0%</p>
+        </div>
+        <div class="progress-bar">
+          <div id="progressFill" class="progress-bar__fill"></div>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <h2>カテゴリ</h2>
+          <p>学びたいテーマを選択してください。</p>
+        </div>
+        <ul id="categoryList" class="category-list"></ul>
+        <div class="sidebar-footer">
+          <p>
+            すべての動画はローカルの
+            <code>videos/</code>
+            から直接再生されます。読み込みに時間がかかる場合があります。
+          </p>
+        </div>
+      </aside>
+
+      <section class="content">
+        <article class="player-card" id="playerCard">
+          <div class="player-meta">
+            <p id="videoBreadcrumb" class="breadcrumbs"></p>
+            <h2 id="videoTitle" class="video-title">動画を選択してください</h2>
+            <p id="videoMeta" class="video-meta"></p>
+          </div>
+          <video
+            id="player"
+            controls
+            preload="metadata"
+            poster=""
+            class="player"
+          ></video>
+        </article>
+
+        <section class="tree" id="tree">
+          <div class="tree-empty">
+            <p>カテゴリを読み込み中です…</p>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
