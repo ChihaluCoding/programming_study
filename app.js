@@ -1,4 +1,34 @@
-const VIDEO_PATH_PREFIX = "";
+// Detect when we need to stream videos from raw.githubusercontent.com (GitHub Pages).
+const VIDEO_PATH_PREFIX = computeVideoPathPrefix();
+
+function computeVideoPathPrefix() {
+  if (typeof window === "undefined") {
+    return "";
+  }
+
+  const override = window.__VIDEO_PATH_PREFIX__;
+  if (typeof override === "string" && override.trim()) {
+    return ensureTrailingSlash(override.trim());
+  }
+
+  const hostMatch = window.location.hostname.match(/^([^.]+)\.github\.io$/i);
+  if (!hostMatch) {
+    return "";
+  }
+
+  const account = hostMatch[1];
+  const pathSegments = window.location.pathname.split("/").filter(Boolean);
+  const repository = pathSegments[0] || `${account}.github.io`;
+  const base = `https://raw.githubusercontent.com/${account}/${repository}/main/`;
+  return ensureTrailingSlash(base);
+}
+
+function ensureTrailingSlash(value) {
+  if (!value) {
+    return "";
+  }
+  return value.endsWith("/") ? value : `${value}/`;
+}
 
 const elements = {
   categoryList: document.getElementById("categoryList"),
